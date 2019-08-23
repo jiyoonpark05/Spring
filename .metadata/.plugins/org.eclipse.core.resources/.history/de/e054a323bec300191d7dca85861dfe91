@@ -1,0 +1,16 @@
+package com.ehr;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import org.apache.log4j.Logger;
+import org.junit.Test;
+
+public class UserDaoJunit {
+	private Logger LOG=Logger.getLogger(UserDaoTest.class);
+	@Test
+	public void addAndGet() {
+		LOG.debug("addAndGet");
+		assertThat(1, is(2));
+	}
+}

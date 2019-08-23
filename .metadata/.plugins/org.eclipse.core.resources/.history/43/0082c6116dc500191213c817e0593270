@@ -1,0 +1,11 @@
+package com.ehr.com;
+
+public class DTO {
+	/**총글수*/
+	private int totalCnt;
+	/**글번호*/
+	private int num;
+	
+	public DTO() {}
+	
+}

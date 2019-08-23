@@ -1,0 +1,23 @@
+package com.ehr;
+
+public class Search {
+	/**페이지사이즈*/
+	private int pageSize   ;
+	/**페이지 번호*/
+	private int pageNum    ;
+	/**검색조건*/
+	private String searchDiv  ;
+	/**검색어*/
+	private String searchWord ;
+	
+	public Search() {}
+
+	public Search(int pageSize, int pageNum, String searchDiv, String searchWord) {
+		super();
+		this.pageSize = pageSize;
+		this.pageNum = pageNum;
+		this.searchDiv = searchDiv;
+		this.searchWord = searchWord;
+	}
+	
+}

@@ -1,0 +1,100 @@
+package com.ehr;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.apache.log4j.Logger;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+public class UserDaoJdbc implements UserDao {
+	static final Logger LOG= Logger.getLogger(UserDao.class);
+	
+	private RowMapper<User> userMapper = new RowMapper<User>() {
+
+		@Override
+		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+			User tmp=new User();
+			tmp.setU_id(rs.getString("u_id"));
+			tmp.setName(rs.getString("name"));
+			tmp.setPasswd(rs.getString("passwd"));
+			
+			return tmp;
+		}
+	};	
+		
+	private JdbcTemplate jdbcTemplate;
+
+	private DataSource dataSource;
+	
+	public UserDaoJdbc() {}
+	
+	public void setDataSource(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		this.dataSource = dataSource;
+	}
+	
+	
+	@Override
+	public List<User> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int count(String uId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteUser(User user) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int add(User user) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public User get(String id) {
+		User outVO=null;
+		
+		//----------------------------------------
+		//02.SQL작성
+		//----------------------------------------		
+		StringBuilder sb=new StringBuilder();
+		sb.append(" SELECT          \n");
+		sb.append("     u_id,       \n");
+		sb.append("     name,       \n");
+		sb.append("     passwd      \n");
+		sb.append(" FROM users      \n");
+		sb.append(" WHERE u_id = ?  \n");
+		
+		LOG.debug("=============================");
+		LOG.debug("02. sql=\n"+sb.toString());
+		LOG.debug("=============================");		
+		
+		outVO = jdbcTemplate.queryForObject(sb.toString()
+				, new Object[] {id}
+				, userMapper);
+		
+		//----------------------------------------
+		//06.outVO==null 예외발생
+		//----------------------------------------
+		if(null == outVO) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		
+		return outVO;
+	}
+
+}

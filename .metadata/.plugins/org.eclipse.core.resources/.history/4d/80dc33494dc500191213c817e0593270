@@ -1,0 +1,14 @@
+package com.ehr;
+
+public class SearchVO {
+	/**페이지사이즈*/
+	private int pageSize   ;
+	/**페이지 번호*/
+	private int pageNum    ;
+	/**검색조건*/
+	private String searchDiv  ;
+	/**검색어*/
+	private String searchWord ;
+	
+	public Search() {}
+}

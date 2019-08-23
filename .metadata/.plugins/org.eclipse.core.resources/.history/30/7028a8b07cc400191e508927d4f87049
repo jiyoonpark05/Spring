@@ -1,0 +1,32 @@
+package com.ehr;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class DeleteAllStatement implements StatementStrategy {
+
+	@Override
+	public PreparedStatement makePrepareedStatement(Connection c) throws SQLException {
+				//----------------------------------------
+				//02.SQL작성
+				//----------------------------------------	
+				PreparedStatement ps = null;
+				
+				StringBuilder sb=new StringBuilder();
+				sb.append(" DELETE FROM users  \n");
+				
+				LOG.debug("=============================");
+				LOG.debug("02. sql=\n"+sb.toString());
+				LOG.debug("=============================");		
+				
+				//----------------------------------------
+				//03.PreparedStatement
+				//----------------------------------------			
+				ps = c.prepareStatement(sb.toString());
+				
+				
+				return ps;
+	}
+
+}

@@ -1,0 +1,74 @@
+package com.ehr;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import org.apache.log4j.Logger;
+
+/**
+ * DI
+ * @author sist
+ * DI를 만들기 위해 생성한 CLASS 
+ *
+ */
+public class jdbcContext {
+	private Logger LOG = Logger.getLogger(jdbcContext.class);
+	public int workWithStatementStrategy(StatementStrategy st)
+			  throws SQLException{
+				//----------------------------------------
+				//01.DB 연결
+				//----------------------------------------		
+				Connection  c = null;
+				PreparedStatement ps = null;
+				int flag = 0;
+				
+				try {
+				
+					c = dataSource.getConnection();
+					LOG.debug("=============================");
+					LOG.debug("01. Connection="+c);
+					LOG.debug("=============================");		
+					
+					//========================================
+					//=변하는 부분 메소드로 추출                                            =
+					//========================================
+					ps = st.makePrepardStatement(c);
+					
+					
+					//----------------------------------------
+					//04.Run sql
+					//----------------------------------------	
+					flag = ps.executeUpdate();
+					LOG.debug("=============================");
+					LOG.debug("04. Run flag=\n"+flag);
+					LOG.debug("=============================");		
+				}catch(SQLException s) {
+					LOG.debug("=============================");
+					LOG.debug("04. SQLException=\n"+s.getMessage());
+					LOG.debug("=============================");				
+				}finally {
+					//----------------------------------------
+					//05.자원반납
+					//----------------------------------------	
+					if(null !=ps) {
+						try {
+							ps.close();
+						}catch(SQLException s) {
+							
+						}
+					}
+					
+					if(null !=c) {
+						try {
+							c.close();
+						}catch(SQLException s) {
+							
+						}
+					}			
+				}
+
+				
+				return flag;		
+			}
+}

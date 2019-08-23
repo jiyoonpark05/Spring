@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UserDaoJunitFinal (5)" project="eHR0206" tests="5" started="5" failures="0" errors="0" ignored="3">
+  <testsuite name="com.ehr.UserDaoJunitFinal" time="0.914">
+    <testcase name="getAll" classname="com.ehr.UserDaoJunitFinal" time="0.333" ignored="true"/>
+    <testcase name="addAndGet" classname="com.ehr.UserDaoJunitFinal" time="0.544"/>
+    <testcase name="retrieve" classname="com.ehr.UserDaoJunitFinal" time="0.036"/>
+    <testcase name="getFailure" classname="com.ehr.UserDaoJunitFinal" time="0.0" ignored="true"/>
+    <testcase name="count" classname="com.ehr.UserDaoJunitFinal" time="0.001" ignored="true"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,38 @@
+package com.ehr;
+
+import org.apache.log4j.Logger;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+public class UserDaoJunitContext {
+
+	Logger LOG=Logger.getLogger(this.getClass());
+	
+	@Autowired
+	ApplicationContext  context;
+	
+	//----------------------
+	//@Before setUp()
+	//----------------------
+	@Before
+	public void setUp() {
+		LOG.debug("01 setUp()");
+	}
+	//----------------------
+	//@Test
+	//----------------------
+	@Test
+	public void count() {
+		LOG.debug("02 count()");
+	}
+	
+	//----------------------
+	//@Test
+	//----------------------
+	
+	//----------------------
+	//@After dearDown()
+	//----------------------	
+}
